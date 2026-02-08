@@ -1,0 +1,446 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-family:
+    "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans",
+    Arial, sans-serif;
+  font-size: 1rem;
+}
+.parent {
+  width: 60vw;
+  height: 100vh;
+  background-color: rgb(0, 0, 0);
+  gap: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
+  flex-direction: column;
+}
+.Home {
+  width: 100%;
+  height: 100%;
+  gap: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
+  flex-direction: column;
+}
+
+.header {
+  width: 100%;
+  background-color: var(--contentback);
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-color);
+  cursor: pointer;
+}
+.header > h2 {
+  font-weight: bolder;
+  color: #ff7b00;
+  font-family:
+    "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans",
+    Arial, sans-serif;
+  font-size: 1.6rem;
+}
+.profileImage {
+  width: 60px;
+  height: 60px;
+  background-color: var(--bg-color);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.profileImage > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.child {
+  width: 100%;
+  height: 87%;
+  background-color: var(--bg-color);
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contentList {
+  width: 100%;
+  background-color: var(--contentback);
+  border-radius: 10px;
+  color: var(--text-color);
+
+  max-height: 466px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.childheader {
+  width: 100%;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: whitesmoke;
+  border-radius: 10px;
+}
+.childrenOne {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.childrenOne > .MainInput {
+  width: 70%;
+  height: 40px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid transparent;
+  padding: 10px;
+  font-size: 1rem;
+  font-family:
+    "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans",
+    Arial, sans-serif;
+}
+.response {
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.childrenOne > .response > .Doit {
+  width: 30%;
+  height: 40px;
+  font-size: 1.1rem;
+  font-weight: bolder;
+  border: 1px solid black;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family:
+    "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans",
+    Arial, sans-serif;
+  background-color: #ff0000;
+}
+
+.childrenOne > .response > .DateANDTime {
+  width: 70%;
+  height: 40px;
+  border-radius: 10px;
+  padding: 4px;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+.childheader > p {
+  text-align: center;
+  color: rgb(246, 6, 6);
+  font-family: "Times New Roman", Times, serif;
+  font-size: 0.9rem;
+}
+
+span {
+  color: blue;
+  font-weight: bolder;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.ProfileBio {
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-color);
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.RegisterFormSection {
+  width: 100%;
+  height: 100%;
+  background-color: var(--contentback);
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.contentChild {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-y: scroll;
+  border-radius: 10px;
+  gap: 10px;
+  padding: 20px 10px 10px;
+}
+.content {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: left;
+  padding: 5px;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+.todoRow {
+  width: 100%;
+  display: flex;
+  justify-content: left;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.DateAlert {
+  width: 100%;
+  border-radius: 5px;
+  background-color: rgb(224, 56, 4);
+  padding: 5px;
+  display: flex;align-items: end;
+  justify-content: space-between;
+  color: var(--text-color);
+
+
+
+}
+.DateAlertsub{width: 20%;display: flex;gap: 10px;justify-content:right;}
+.DateAlertsub>button{padding: 5px;width: 30%;border-radius: 3px;background-color: #f5f5f5;border: 1px solid black;}
+.contentChild::-webkit-scrollbar {
+  display: none;
+}
+.dateTime {
+  width: 50%;
+  text-align: left;
+}
+.dateicons {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.contentIcons {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  align-items: center;
+  gap: 10px;
+}
+
+.todoRow > textarea {
+  width: 68%;
+  padding-left: 5px;
+  border-radius: 5px;
+  resize: none;
+  overflow: hidden;
+  background: transparent;
+  border: 0px solid transparent;
+  outline: none;
+
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.iconBtn {
+  position: relative;
+  display: inline-flex;
+  cursor: pointer;
+  font-size: 15px;
+  color: var(--text-color);
+}
+
+.iconBtn::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-color);
+  color: var(--contentback);
+  padding: 2px;
+  border-radius: 6px;
+  font-size: 10px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* Small arrow */
+.iconBtn::before {
+  content: "";
+  position: absolute;
+  bottom: 90%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: #222 transparent transparent transparent;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+/* Show on hover */
+.iconBtn:hover::after,
+.iconBtn:hover::before {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-4px);
+}
+
+@media (min-width: 500px) and (max-width: 768px) {
+  .parent {
+    width: 100vw;
+  }
+  .header > h2 {
+    font-size: 1.2rem;
+  }
+  .contentList {
+    padding: 10px;
+  }
+  .contentChild {
+    height: 350px;
+  }
+  .dateicons {
+    width: 40%;
+  }
+  .todoRow > textarea {
+    width: 57%;
+  }
+  .todoRow > .dateicons {
+    width: 40%;
+  }
+  .dateTime {
+    width: 50%;
+  }
+  .contentIcons {
+    width: 50%;
+    gap: 10px;
+  }
+  .todoRow > .contentIcons {
+    justify-content: space-around;
+  }
+
+  .profileImage {
+    width: 45px;
+    height: 45px;
+  }
+
+  .content textarea {
+    font-size: 0.9rem;
+  }
+
+  .Doit,
+  .DateANDTime {
+    flex: 1 1 100%;
+  }
+}
+
+@media (max-width: 500px) {
+  .parent {
+    width: 100vw;
+    padding: 0px;
+  }
+  .child {
+    padding: 0px;
+    height: 100%;
+    overflow-y: scroll;
+    background-color: transparent;
+  }
+  .child::-webkit-scrollbar {
+    display: none;
+  }
+  .childheader {
+    display: flex;
+    padding: 5px;
+  }
+  .childrenOne {
+    gap: 5px;
+    padding: 10px;
+    flex-direction: column;
+  }
+  .contentChild {
+    height: 350px;
+    justify-content: flex-start;
+  }
+  .todoRow {
+    justify-content: flex-start;
+  }
+  
+  .contentList {
+    padding: 5px;
+    max-height: 350px;
+  }
+  .response {
+    width: 100%;
+  }
+  .childrenOne > .MainInput {
+    width: 100%;
+  }
+
+  .contentList {
+    height: 400px;
+    justify-content: center;
+    gap: 0px;
+    align-items: center;
+  }
+  .content {
+    flex-direction: column;
+    gap: 5px;
+  }
+  .todoRow > textarea {
+    width: 100%;
+    padding: 5px;
+  }
+  .dateicons {
+    width: 100%;
+    text-align: left;
+  }
+  .contentIcons {
+    width: 40%;
+    gap: 5px;
+  }
+  .todoRow {
+    height: 100%;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .DateAlert{flex-direction: column;justify-content: center;align-items: center;}
+  .DateAlertsub{width: 60%;justify-content: space-around;}
+  .header > h2 {
+    font-size: 1.3rem;
+  }
+  .profileImage {
+    width: 40px;
+    height: 40px;
+  }
+}

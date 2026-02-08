@@ -1,0 +1,17 @@
+*{font-size: 1rem;}
+:root {
+  --bg-color: #000000;  --text-color: #111111;
+  --card-bg: #f5f5f5;
+  --border-color: #dddddd;
+  --backgroundcolor:rgb(24, 24, 24);
+  --contentback:rgb(255, 255, 255);
+  --arrow:white
+}
+
+[data-theme="dark"] {
+  --bg-color: #ffffff;
+  --text-color: #ffffff;
+  --card-bg: #f5f5f5;
+  --contentback:rgb(48, 47, 47);
+  --arrow:black
+}
