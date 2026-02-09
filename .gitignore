@@ -3,7 +3,7 @@
 __pycache__/
 env/
 venv/
-sample/Lib/
+sample/
 
 # Django
 *.sqlite3

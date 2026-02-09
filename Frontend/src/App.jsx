@@ -98,10 +98,9 @@ function App() {
   }, []);
 
   async function handleImageUpdation(profile_pic_path) {
-    
-    await GetList();
     const full = `http://127.0.0.1:8000${profile_pic_path}`;
     localStorage.setItem("profile_pic", profile_pic_path);
+    await GetList();
     setProfilePic(full);
   }
 
