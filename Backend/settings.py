@@ -5,7 +5,10 @@ import dj_database_url
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = os.getenv(
+    "SECRET_KEY",
+    "django-insecure-local-development-key"
+)
 DEBUG = False
 ALLOWED_HOSTS = ['*']
 
@@ -27,12 +30,13 @@ INSTALLED_APPS = [
     'Authentication',
 
     'rest_framework_simplejwt.token_blacklist',
+    'whitenoise.runserver_nostatic',
 
 ]
 
 AUTH_USER_MODEL = 'Authentication.User'
 
-MIDDLEWARE = [
+MMIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 
     'django.middleware.security.SecurityMiddleware',
@@ -46,7 +50,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
 
 ROOT_URLCONF = 'Backend.urls'
 
@@ -99,7 +102,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
