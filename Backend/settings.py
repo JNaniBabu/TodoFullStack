@@ -104,7 +104,9 @@ CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
   "https://web-production-b7c02.up.railway.app/"
+  
 ]
+
 
 if DEBUG:
     SESSION_COOKIE_SAMESITE = "Lax"
