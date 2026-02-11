@@ -10,12 +10,15 @@ from django.conf import settings
 
 User = get_user_model()
 
-if not User.objects.filter(username=settings.DJANGO_SUPERUSER_USERNAME).exists():
-    User.objects.create_superuser(
-        username=settings.DJANGO_SUPERUSER_USERNAME,
-        email=settings.DJANGO_SUPERUSER_EMAIL,
-        password=settings.DJANGO_SUPERUSER_PASSWORD
-    )
-    print("Superuser created!")
+username = getattr(settings, "DJANGO_SUPERUSER_USERNAME", None)
+email = getattr(settings, "DJANGO_SUPERUSER_EMAIL", None)
+password = getattr(settings, "DJANGO_SUPERUSER_PASSWORD", None)
+
+if username and email and password:
+    if not User.objects.filter(username=username).exists():
+        User.objects.create_superuser(username=username, email=email, password=password)
+        print(f"Superuser {username} created!")
+    else:
+        print(f"Superuser {username} already exists.")
 else:
-    print("Superuser already exists.")
+    print("Superuser environment variables are missing!")
