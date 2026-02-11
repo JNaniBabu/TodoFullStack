@@ -1,2 +1,1 @@
-
-web: python manage.py migrate && python manage.py collectstatic --noinput && gunicorn Backend.wsgi --bind 0.0.0.0:$PORT
+web: python manage.py migrate && python manage.py collectstatic --noinput && python manage.py shell -c "from django.conf import settings; from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.filter(username=settings.SUPERUSER_USERNAME).exists() or User.objects.create_superuser(username=settings.SUPERUSER_USERNAME, email=settings.SUPERUSER_EMAIL, password=settings.SUPERUSER_PASSWORD)" && gunicorn Backend.wsgi --bind 0.0.0.0:$PORT
