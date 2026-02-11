@@ -1,7 +1,7 @@
 {
   "deploy": {
     "releaseCommand": "python manage.py migrate && python manage.py collectstatic --noinput",
-    "startCommand": "python manage.py collectstatic --noinput && python manage.py create_initial_superuser && gunicorn Backend.wsgi --bind 0.0.0.0:$PORT"
+    "startCommand": "gunicorn Backend.wsgi --bind 0.0.0.0:$PORT"
   }
 }
 
