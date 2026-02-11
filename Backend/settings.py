@@ -1,18 +1,18 @@
+
 from pathlib import Path
 from datetime import timedelta
 import os
-import dj_database_url
 import environ
 
-
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+
 env = environ.Env(DEBUG=(bool, False))
+
 SECRET_KEY = env("SECRET_KEY")
 DEBUG = env("DEBUG")
 
 ALLOWED_HOSTS = ['*']
-
-
 
 
 INSTALLED_APPS = [
@@ -23,24 +23,21 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'corsheaders',                   
+    'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
 
-    'Authentication',
-
+    'Authentication',  
     'rest_framework_simplejwt.token_blacklist',
-
 ]
 
 AUTH_USER_MODEL = 'Authentication.User'
 
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-
     'corsheaders.middleware.CorsMiddleware',
-
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -50,6 +47,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Backend.urls'
+
 
 TEMPLATES = [
     {
@@ -68,10 +66,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Backend.wsgi.application'
 
-
 DATABASES = {
-    "default": env.db()  
+    "default": env.db(),  
 }
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
@@ -91,22 +89,21 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-
-
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
 
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-    "https://web-production-b7c02.up.railway.app",
+   "https://web-production-b7c02.up.railway.app/"
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-    "https://web-production-b7c02.up.railway.app",
+  "https://web-production-b7c02.up.railway.app/"
 ]
 
 if DEBUG:
@@ -127,23 +124,17 @@ REST_FRAMEWORK = {
     ),
 }
 
-
-
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=2),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=30),
     'AUTH_HEADER_TYPES': ('Bearer',),
-
-    "ROTATE_REFRESH_TOKENS": True,
-    "BLACKLIST_AFTER_ROTATION": True,
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
 }
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-DJANGO_SUPERUSER_USERNAME = env("DJANGO_SUPERUSER_USERNAME")
-DJANGO_SUPERUSER_EMAIL = env("DJANGO_SUPERUSER_EMAIL")
-DJANGO_SUPERUSER_PASSWORD = env("DJANGO_SUPERUSER_PASSWORD")
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
