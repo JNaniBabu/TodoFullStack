@@ -2,14 +2,14 @@ from pathlib import Path
 from datetime import timedelta
 import os
 import dj_database_url
+import environ
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = os.getenv(
-    "SECRET_KEY",
-    "django-insecure-local-development-key"
-)
-DEBUG = False
+env = environ.Env(DEBUG=(bool, False))
+SECRET_KEY = env("SECRET_KEY")
+DEBUG = env("DEBUG")
+
 ALLOWED_HOSTS = ['*']
 
 
@@ -69,20 +69,9 @@ TEMPLATES = [
 WSGI_APPLICATION = 'Backend.wsgi.application'
 
 
-DATABASE_URL = os.environ.get("DATABASE_URL")
-
-if DATABASE_URL:
-    DATABASES = {
-        "default": dj_database_url.parse(DATABASE_URL, conn_max_age=600)
-    }
-else:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
-        }
-    }
-
+DATABASES = {
+    "default": env.db()  
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
@@ -155,7 +144,6 @@ AUTHENTICATION_BACKENDS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-DJANGO_SUPERUSER_USERNAME = "Nani"
-DJANGO_SUPERUSER_EMAIL = "jakkulananibabu143@gmail.com"
-DJANGO_SUPERUSER_PASSWORD = "Nanibabu"
+DJANGO_SUPERUSER_USERNAME = env("DJANGO_SUPERUSER_USERNAME")
+DJANGO_SUPERUSER_EMAIL = env("DJANGO_SUPERUSER_EMAIL")
+DJANGO_SUPERUSER_PASSWORD = env("DJANGO_SUPERUSER_PASSWORD")
