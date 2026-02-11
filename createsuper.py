@@ -1,4 +1,4 @@
-# create_superuser.py
+
 import os
 import django
 
@@ -10,9 +10,9 @@ from django.conf import settings
 
 User = get_user_model()
 
-username = getattr(settings, "DJANGO_SUPERUSER_USERNAME", None)
-email = getattr(settings, "DJANGO_SUPERUSER_EMAIL", None)
-password = getattr(settings, "DJANGO_SUPERUSER_PASSWORD", None)
+username = os.environ.get("DJANGO_SUPERUSER_USERNAME")
+email = os.environ.get("DJANGO_SUPERUSER_EMAIL")
+password = os.environ.get("DJANGO_SUPERUSER_PASSWORD")
 
 if username and email and password:
     if not User.objects.filter(username=username).exists():
