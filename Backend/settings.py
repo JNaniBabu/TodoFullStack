@@ -8,9 +8,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 env = environ.Env(DEBUG=(bool, False))
+DEBUG = env("DEBUG", default=False)
+
 
 SECRET_KEY = env("SECRET_KEY")
-DEBUG = env("DEBUG")
+
 
 ALLOWED_HOSTS = ['*']
 
@@ -97,13 +99,13 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-   "https://web-production-b7c02.up.railway.app/"
+   "https://web-production-b7c02.up.railway.app"
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-  "https://web-production-b7c02.up.railway.app/"
+  "https://web-production-b7c02.up.railway.app"
   
 ]
 
