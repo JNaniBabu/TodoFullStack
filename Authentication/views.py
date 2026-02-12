@@ -26,7 +26,8 @@ def Registration(request):
         serializer.save()
         return Response({'message': 'Successfully registered'}, status=201)
 
-    return Response(serializer.errors, status=400)
+    errors = {field: error[0] if isinstance(error, list) else error for field, error in serializer.errors.items()}
+    return Response({'message': 'Validation failed', 'errors': errors}, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['POST'])
