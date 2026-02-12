@@ -14,7 +14,7 @@ import {
 import { AuthenticationContext } from "./auth";
 import { ThemeContext } from "./theme";
 
-const API = "http://127.0.0.1:8000";
+const API= "https://web-production-b7c02.up.railway.app";
 
 
 function ProfileBio({ HandleBack, HandleLogout }) {

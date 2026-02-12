@@ -8,12 +8,14 @@ import { FaTrash, FaEdit, FaCheck } from "react-icons/fa";
 import { BsFillSave2Fill } from "react-icons/bs";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import { fetchWithRefresh } from "./authenticate.jsx";
 
 
 
 function App() {
   const { Todolist, setTodolist } = useContext(TodoListContext);
   const { RegisterCheck, setRegisterCheck } = useContext(AuthenticationContext);
+  const API= "https://web-production-b7c02.up.railway.app"
 
   const [activityData, setactivityData] = useState({});
   const [ProfileNotCheck, setProfileNotCheck] = useState([0]);
@@ -52,7 +54,7 @@ function App() {
       return;
     }
 
-    await fetch("http://127.0.0.1:8000/reset/", {
+    await fetch(`${API}/reset/`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("access")}`,
@@ -70,7 +72,7 @@ function App() {
   }
 
   async function HandleLogout() {
-    await fetch("http://127.0.0.1:8000/logout/", {
+    await fetch(`${API}/logout/`, {
       method: "POST",
       credentials: "include",
     });
@@ -91,14 +93,14 @@ function App() {
     }
     const storedPic = localStorage.getItem("profile_pic");
     if (storedPic) {
-      setProfilePic(`http://127.0.0.1:8000${storedPic}`);
+      setProfilePic(`${API}/${storedPic}`);
     }
 
     CheckRegister();
   }, []);
 
   async function handleImageUpdation(profile_pic_path) {
-    const full = `http://127.0.0.1:8000${profile_pic_path}`;
+    const full = `${API}/${profile_pic_path}`;
     localStorage.setItem("profile_pic", profile_pic_path);
     await GetList();
     setProfilePic(full);
@@ -107,7 +109,7 @@ function App() {
   async function GetList() {
     const token = localStorage.getItem("access");
     if (!token) return;
-    let response = await fetch("http://127.0.0.1:8000/todolist/", {
+    let response = await fetch(`${API}/todolist/`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -120,7 +122,7 @@ function App() {
   }
 
   async function Delete(id) {
-    await fetch(`http://127.0.0.1:8000/delete/${id}/`, {
+    await fetch(`${API}/delete/${id}/`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("access")}`,
@@ -141,7 +143,7 @@ function App() {
     }
     
 
-    await fetch(`http://127.0.0.1:8000/DoneToDo/${id}/`, {
+    await fetch(`${API}/DoneToDo/${id}/`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("access")}`,
@@ -158,7 +160,7 @@ function App() {
     activity: activityData[i],
   };
 
-  await fetch(`http://127.0.0.1:8000/save/${id}/`, {
+  await fetch(`${API}/save/${id}/`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

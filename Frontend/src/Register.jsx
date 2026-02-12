@@ -6,7 +6,7 @@ import { AuthenticationContext } from "./auth.jsx";
 import "./Register.css";
 
 function RegisterSection({ HandleBack, handleImageUpdation }) {
-  const API = "http://127.0.0.1:8000";
+const API= "https://web-production-b7c02.up.railway.app";
 
   const { RegisterCheck, setRegisterCheck } = useContext(AuthenticationContext);
   let [ActivateForm, setActivateForm] = useState(true);

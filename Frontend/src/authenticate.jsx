@@ -1,4 +1,4 @@
-const API = "http://127.0.0.1:8000";
+const API =  "https://web-production-b7c02.up.railway.app"
 
 export const fetchWithRefresh = async (url, options = {}) => {
   let access = localStorage.getItem("access");

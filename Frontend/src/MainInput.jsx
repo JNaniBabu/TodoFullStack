@@ -29,6 +29,7 @@ function MainInput({ UpdationOFlist }) {
   const [activity, setActivity] = useState("");
   const [dateTime, setDateTime] = useState("");
   const [error, setError] = useState("");
+   const API= "https://web-production-b7c02.up.railway.app"
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -63,7 +64,7 @@ function MainInput({ UpdationOFlist }) {
   };
 
   try {
-    const res = await fetchWithRefresh("http://127.0.0.1:8000/AddToDo/", {
+    const res = await fetchWithRefresh(`${API}//AddToDo/`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(Data),
