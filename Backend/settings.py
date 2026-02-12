@@ -15,7 +15,7 @@ environ.Env.read_env(BASE_DIR / ".env")
 
 SECRET_KEY = env("SECRET_KEY")
 DEBUG = env("DEBUG")
-ALLOWED_HOSTS = ['*']  
+
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -39,6 +39,7 @@ AUTH_USER_MODEL = "Authentication.User"
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
+
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -80,21 +81,21 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
-ALLOWED_HOSTS = ["https://todo-full-stack-lbax.vercel.app/"]
+ALLOWED_HOSTS = ["https://todo-full-stack-lbax.vercel.app"]
 
 
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-   "https://todo-full-stack-lbax.vercel.app/"
+   "https://todo-full-stack-lbax.vercel.app"
     
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-    "https://todo-full-stack-lbax.vercel.app/"
+    "https://todo-full-stack-lbax.vercel.app"
     
 ]
 
