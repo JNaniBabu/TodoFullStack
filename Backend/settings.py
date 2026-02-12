@@ -81,8 +81,7 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
-ALLOWED_HOSTS = ["https://todo-full-stack-lbax.vercel.app"]
-
+ALLOWED_HOSTS = ["web-production-b7c02.up.railway.app"]
 
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
