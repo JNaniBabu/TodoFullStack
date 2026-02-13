@@ -333,6 +333,7 @@ span {
   .dateicons {
     width: 40%;
   }
+  .MainInput{width: 60%;}
   .todoRow > textarea {
     width: 57%;
   }
