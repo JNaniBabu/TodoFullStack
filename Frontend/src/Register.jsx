@@ -45,7 +45,9 @@ const API= "https://web-production-b7c02.up.railway.app";
       password: passwordData.current.value,
       name: nameData.current.value,
     };
-    async function registerUser() {
+    async function registerUser(e) {
+      e.preventDefault()
+
       try {
         const response = await fetch(`${API}/register/`, {
           method: "POST",
@@ -54,8 +56,9 @@ const API= "https://web-production-b7c02.up.railway.app";
           body: JSON.stringify(data),
 
         });
-        const result = await response.json();
-        setMessage(result["message"]);
+        console.log("Status:", response.status);
+        const result = await response.text();
+        setMessage(result);
       } catch (error) {
         console.error("Error:", error);
       }
@@ -113,7 +116,7 @@ const API= "https://web-production-b7c02.up.railway.app";
       </div>
       <div className="Forms">
         {ActivateForm && (
-          <form className="RegistrationFrom">
+          <form className="RegistrationFrom" onSubmit={HandleRegistration}>
             <h3>Registration Form</h3>
             <div className="formRow">
               <div className="formLabel">
@@ -158,7 +161,7 @@ const API= "https://web-production-b7c02.up.railway.app";
             >
               {Message}
             </h5>
-            <button onClick={HandleRegistration} className="button">
+            <button  className="button">
               Register
             </button>
 
