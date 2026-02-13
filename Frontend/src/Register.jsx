@@ -50,6 +50,7 @@ const API= "https://web-production-b7c02.up.railway.app";
         const response = await fetch(`${API}/register/`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
+          credentials: "include",
           body: JSON.stringify(data),
 
         });
