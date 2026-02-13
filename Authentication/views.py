@@ -52,7 +52,7 @@ def Login(request):
                   value=str(refresh),
                   httponly=True,
                  secure=True,
-                 samesite='noen',  
+                 samesite='None',  
                   path='/'
                   )
 
