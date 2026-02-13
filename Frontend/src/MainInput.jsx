@@ -110,7 +110,7 @@ function MainInput({ UpdationOFlist }) {
             }}
           />
 
-          <button onClick={handleUpdatation} className="Doit" disabled={loading}>{loading ? "Adding..." : "Doit"}</button>
+          <button onClick={handleUpdatation} className="Doit" disabled={loading}>{loading ? "Adding.." : "Doit"}</button>
         </div>
       </div>
 
