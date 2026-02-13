@@ -51,8 +51,8 @@ def Login(request):
                   key='refresh',
                   value=str(refresh),
                   httponly=True,
-                   secure=False,
-                 samesite='Lax',  
+                 secure=True,
+                 samesite='noen',  
                   path='/'
                   )
 
