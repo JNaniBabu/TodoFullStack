@@ -64,7 +64,7 @@ function MainInput({ UpdationOFlist }) {
   };
 
   try {
-    const res = await fetchWithRefresh(`${API}//AddToDo/`, {
+    const res = await fetchWithRefresh(`${API}/AddToDo/`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(Data),
