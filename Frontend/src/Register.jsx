@@ -179,7 +179,7 @@ const API= "https://web-production-b7c02.up.railway.app";
           </form>
         )}
         {ActivateForm == false && (
-          <form className="LoginFrom">
+          <form className="LoginFrom" onSubmit={HandleLogin}>
             <h3>Login Form</h3>
             <div className="formRow">
               <div className="formLabel">
@@ -212,7 +212,7 @@ const API= "https://web-production-b7c02.up.railway.app";
             >
               {Message}
             </h6>
-            <button onClick={HandleLogin} className="button">
+            <button  className="button">
               Login
             </button>
 
