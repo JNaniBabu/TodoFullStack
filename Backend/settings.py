@@ -83,6 +83,7 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 ALLOWED_HOSTS = ["web-production-b7c02.up.railway.app"]
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 CORS_ALLOW_CREDENTIALS = True
 
@@ -98,6 +99,8 @@ CORS_ALLOWED_ORIGIN_REGEXES = [
 
 CSRF_TRUSTED_ORIGINS = [
     "https://*.vercel.app",
+   
+
 ]
 
 

@@ -60,6 +60,8 @@ function ProfileBio({ HandleBack, HandleLogout }) {
 
         if (!response.ok) throw new Error("Failed to fetch profile");
         const result = await response.json();
+        console.log(result.data);
+        
         setProfileData(result.data);
 
       } catch (error) {
