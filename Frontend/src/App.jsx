@@ -24,7 +24,7 @@ function App() {
 
   const [ProfilePic, setProfilePic] = useState(() => {
     const pic = localStorage.getItem("profile_pic");
-    return pic ? `http://127.0.0.1:8000${pic}` : null;
+    return pic ? `${pic}` : null;
   });
 
   useEffect(() => {
@@ -100,7 +100,6 @@ function App() {
   }, []);
 
   async function handleImageUpdation(profile_pic_path) {
-    const full = `${API}/${profile_pic_path}`;
     localStorage.setItem("profile_pic", profile_pic_path);
     await GetList();
     setProfilePic(full);

@@ -92,7 +92,7 @@ function ProfileBio({ HandleBack, HandleLogout }) {
     const data = await response.json();
 
     setPreview(null);
-    setProfileData(data);
+    setProfileData(data);d
 
   } catch (error) {
     console.error(error);
