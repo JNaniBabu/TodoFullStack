@@ -58,7 +58,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     def get_profile_pic(self, obj):
         if obj.profile_pic:
             try:
-                return obj.profile_pic.url  # Cloudinary URL
+                return obj.profile_pic.url 
             except:
                 return None
         return None

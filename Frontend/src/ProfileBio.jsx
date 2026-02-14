@@ -127,10 +127,7 @@ function ProfileBio({ HandleBack, HandleLogout }) {
 
         <div className="ProfileBasics">
           <img
-            src={
-              preview ||
-              (ProfileData.profile_pic ? `${ProfileData.profile_pic}` : null)
-            }
+            src={preview || ProfileData?.profile_pic || null}
             onClick={openFilePicker}
             alt="profile"
           />
