@@ -99,7 +99,9 @@ const API= "https://web-production-b7c02.up.railway.app";
         setRegisterCheck(false);
         window.localStorage.setItem('access',result.access)
         setMessage("Login successful");
-        handleImageUpdation(result.profile_pic);
+        handleImageUpdation(result.profile_pic );
+        console.log(result.profile_pic);
+        
       } catch (error) {
         console.error(error);
       }

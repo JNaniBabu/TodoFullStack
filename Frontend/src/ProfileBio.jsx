@@ -37,6 +37,30 @@ function ProfileBio({ HandleBack, HandleLogout }) {
     profile_pic: null,
   });
 
+
+  useEffect(() => {
+    
+      async function fetchProfile() {
+        const token = localStorage.getItem("access");
+        if (!token) return;
+
+        const response = await fetch(`${API}/profile/`, {
+          method: "GET",
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const result = await response.json();
+
+        if (result.profile_pic) {
+          result.profile_pic = result.profile_pic.replace(/^http:/, "https:");
+          localStorage.setItem("profile_pic", result.profile_pic);
+        }
+
+        setProfileData(result);
+      }
+
+      if (!RegisterCheck) fetchProfile();
+}, [RegisterCheck]);
+
   const fileRef = useRef(null);
 
   const openFilePicker = () => {
@@ -53,28 +77,6 @@ function ProfileBio({ HandleBack, HandleLogout }) {
   };
 
 
-useEffect(() => {
-  async function fetchProfile() {
-    const token = localStorage.getItem("access");
-    if (!token) return;
-    const response = await fetch(`${API}/profile/`, {
-      method: "GET",
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    const result = await response.json();
-
-    if (result.profile_pic) {
-      const secureUrl = result.profile_pic.replace(/^http:/, "https:");
-      localStorage.setItem("profile_pic", secureUrl);
-      setProfilePic(secureUrl);
-      console.log(result);
-      
-    }
-    setProfileData(result)
-  }
-
-  if (!RegisterCheck) fetchProfile();
-}, [RegisterCheck]);
 
  const handleSave = async () => {
   try {
