@@ -54,7 +54,7 @@ const API= "https://web-production-b7c02.up.railway.app";
           body: JSON.stringify(data),
 
         });
-        const result = await response.text();
+        const result = await response.json();
         console.log(result['message']);
         
         setMessage(result['message']);
