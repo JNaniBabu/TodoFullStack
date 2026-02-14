@@ -52,7 +52,7 @@ function ProfileBio({ HandleBack, HandleLogout }) {
     setProfileData((prev) => ({ ...prev, [key]: value }));
   };
 
-  
+
 useEffect(() => {
   async function fetchProfile() {
     const token = localStorage.getItem("access");
@@ -79,7 +79,10 @@ useEffect(() => {
     formData.append("bio", ProfileData.bio);
 
     if (fileRef.current.files[0]) {
-      formData.append("profile_pic", fileRef.current.files[0]);
+
+      const filed=fileRef.current.files[0]
+      Updatedfiled=filed.result.profile_pic.replace(/^http:/, "https:");
+      formData.append("profile_pic", Updatedfiled);
     }
     const response = await fetchWithRefresh(`${API}/update-profile/`, {
       method: "PUT",
