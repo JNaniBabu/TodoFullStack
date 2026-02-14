@@ -129,17 +129,19 @@ def ProfileData(request):
 def UpdateProfileData(request):
     profile = request.user.profile
 
+    if profile.profile_pic and str(profile.profile_pic).startswith("http:"):
+        profile.profile_pic = str(profile.profile_pic).replace("http:", "https:")
+
     serializer = ProfileSerializer(
-    profile,
-    data=request.data,
-    partial=True,
-    context={'request': request}
-)
+        profile,
+        data=request.data,
+        partial=True,
+        context={'request': request}
+    )
 
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data)
-
     return Response(serializer.errors, status=400)
 
 
