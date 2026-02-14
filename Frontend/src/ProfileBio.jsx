@@ -89,6 +89,8 @@ function ProfileBio({ HandleBack, HandleLogout }) {
     if (!response.ok) throw new Error("Failed to update profile");
     const data = await response.json();
      if (data.profile_pic) {
+      console.log(data.profile_pic);
+      
     setPreview(data.profile_pic);
    }
     setProfileData(data);
