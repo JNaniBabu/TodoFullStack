@@ -79,29 +79,31 @@ useEffect(() => {
     formData.append("bio", ProfileData.bio);
 
     if (fileRef.current.files[0]) {
-
-      const filed=fileRef.current.files[0]
-      Updatedfiled=filed.result.profile_pic.replace(/^http:/, "https:");
-      formData.append("profile_pic", Updatedfiled);
+      formData.append("profile_pic", fileRef.current.files[0]);
     }
+
     const response = await fetchWithRefresh(`${API}/update-profile/`, {
       method: "PUT",
       body: formData,
     });
-   
+
     if (!response.ok) throw new Error("Failed to update profile");
+
     const data = await response.json();
-     if (data.profile_pic) {
-      console.log(data.profile_pic);
-      
-    setPreview(data.profile_pic);
-   }
-    setProfileData(data);
+
+    if (data.profile_pic) {
+      const secureUrl = data.profile_pic.replace(/^http:/, "https:");
+      localStorage.setItem("profile_pic", secureUrl);
+      setPreview(secureUrl);
+      setProfileData((prev) => ({ ...prev, profile_pic: secureUrl }));
+    }
+    setProfileData((prev) => ({ ...prev, ...data }));
 
   } catch (error) {
     console.error(error);
   }
 };
+
 
 
   const getFeedback = () => {
