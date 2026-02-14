@@ -24,7 +24,7 @@ function App() {
 
   const [ProfilePic, setProfilePic] = useState(() => {
     const pic = localStorage.getItem("profile_pic");
-    return pic ? `${pic}` : null;
+    return pic || null;
   });
 
   useEffect(() => {
@@ -85,24 +85,15 @@ function App() {
   }
 
   useEffect(() => {
-    function CheckRegister() {
-      if (window.localStorage.getItem("access")) {
-        return setRegisterCheck(false);
-      }
-      return setRegisterCheck(true);
-    }
-    const storedPic = localStorage.getItem("profile_pic");
-    if (storedPic) {
-      setProfilePic(`${API}/${storedPic}`);
-    }
-
-    CheckRegister();
-  }, []);
-
+  const storedPic = localStorage.getItem("profile_pic");
+  if (storedPic) {
+    setProfilePic(storedPic);
+  }
+}, []);
   async function handleImageUpdation(profile_pic_path) {
     localStorage.setItem("profile_pic", profile_pic_path);
     await GetList();
-    setProfilePic(full);
+    setProfilePic(profile_pic_path);
   }
 
   async function GetList() {
