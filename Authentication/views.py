@@ -6,6 +6,7 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from django.utils import timezone
 from datetime import date, timedelta
+from django.conf import settings
 
 from .serializers import RegisterSerializer, ProfileSerializer, TodolistSerializer
 from .models import TodoList
@@ -30,7 +31,6 @@ def Registration(request):
     return Response({'message': 'Validation failed', 'errors': errors}, status=status.HTTP_400_BAD_REQUEST)
 
 
-from .models import Profile
 
 @api_view(['POST'])
 def Login(request):
@@ -38,29 +38,32 @@ def Login(request):
     password = request.data.get('password')
 
     user = authenticate(request, username=email, password=password)
+    if not user:
+        return Response({'message': 'Invalid credentials'}, status=401)
 
-    if user:
-        refresh = RefreshToken.for_user(user)
-        profile= user.profile
+    refresh = RefreshToken.for_user(user)
+    profile = user.profile
 
-        response = Response({
-            'message': 'Login successful',
-            'access': str(refresh.access_token),
-            "profile_pic": profile.profile_pic.url if profile.profile_pic else None,
-        })
+    profile_pic_url = None
+    if profile.profile_pic and hasattr(profile.profile_pic, 'url'):
+        profile_pic_url = profile.profile_pic.url
 
-        response.set_cookie(
-            key='refresh',
-            value=str(refresh),
-            httponly=True,
-            secure=True,
-            samesite='None',
-            path='/'
-        )
+    response = Response({
+        'message': 'Login successful',
+        'access': str(refresh.access_token),
+        'profile_pic': profile_pic_url,
+    })
 
-        return response
+    response.set_cookie(
+        key='refresh',
+        value=str(refresh),
+        httponly=True,
+        secure=not settings.DEBUG,
+        samesite='None' if not settings.DEBUG else 'Lax',
+        path='/'
+    )
 
-    return Response({'message': 'Invalid credentials'}, status=401)
+    return response
 
 
 

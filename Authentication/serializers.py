@@ -50,9 +50,18 @@ class LoginSerializer(serializers.Serializer):
 
 
 class ProfileSerializer(serializers.ModelSerializer):
+    profile_pic = serializers.SerializerMethodField()
     class Meta:
         model = Profile
         fields = '__all__'
+
+    def get_profile_pic(self, obj):
+        if obj.profile_pic:
+            try:
+                return obj.profile_pic.url  # Cloudinary URL
+            except:
+                return None
+        return None
 
 
 class TodolistSerializer(serializers.ModelSerializer):

@@ -31,6 +31,9 @@ INSTALLED_APPS = [
 
     "Authentication",
     "rest_framework_simplejwt.token_blacklist",
+
+     'cloudinary',
+    'cloudinary_storage',
 ]
 
 AUTH_USER_MODEL = "Authentication.User"
@@ -78,8 +81,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 
 ALLOWED_HOSTS = ["web-production-b7c02.up.railway.app"]
 
@@ -161,3 +164,12 @@ DJANGO_SUPERUSER_USERNAME = env("DJANGO_SUPERUSER_USERNAME")
 USE_X_FORWARDED_HOST = True
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+
+import cloudinary
+
+cloudinary.config(
+    cloud_name = env("CLOUDINARY_CLOUD_NAME"),
+    api_key = env("CLOUDINARY_API_KEY"),
+    api_secret = env("CLOUDINARY_API_SECRET"),
+)

@@ -41,9 +41,11 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.email
 
 
+from cloudinary.models import CloudinaryField
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-    profile_pic = models.ImageField(upload_to='profiles/', null=True, blank=True)
+    profile_pic = CloudinaryField('profilesimage', null=True, blank=True)
     bio = models.TextField(blank=True)
     no_of_tasks = models.IntegerField(default=0)
     totalcompletion=models.IntegerField(default=0)
