@@ -62,11 +62,15 @@ useEffect(() => {
       headers: { Authorization: `Bearer ${token}` },
     });
     const result = await response.json();
+
     if (result.profile_pic) {
       const secureUrl = result.profile_pic.replace(/^http:/, "https:");
       localStorage.setItem("profile_pic", secureUrl);
       setProfilePic(secureUrl);
+      console.log(result);
+      
     }
+    setProfileData(result)
   }
 
   if (!RegisterCheck) fetchProfile();

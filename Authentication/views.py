@@ -111,7 +111,6 @@ def ProfileData(request):
     profile = request.user.profile
     serializer = ProfileSerializer(profile, context={'request': request})
 
-
     data = {
         'name': request.user.name,
         'bio': serializer.data['bio'],
