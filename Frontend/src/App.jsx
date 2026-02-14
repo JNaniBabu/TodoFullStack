@@ -87,7 +87,8 @@ function App() {
   useEffect(() => {
   const storedPic = localStorage.getItem("profile_pic");
   if (storedPic) {
-    setProfilePic(storedPic);
+    const secureUrl = storedPic.replace(/^http:/, "https:");
+    setProfilePic(secureUrl);
   }
 }, []);
   async function handleImageUpdation(profile_pic_path) {

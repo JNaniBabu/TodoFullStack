@@ -52,25 +52,25 @@ function ProfileBio({ HandleBack, HandleLogout }) {
     setProfileData((prev) => ({ ...prev, [key]: value }));
   };
 
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const token = localStorage.getItem("access");
-        const response = await fetchWithRefresh(`${API}/profile/`, {method: "GET",});
+  
+useEffect(() => {
+  async function fetchProfile() {
+    const token = localStorage.getItem("access");
+    if (!token) return;
+    const response = await fetch(`${API}/profile/`, {
+      method: "GET",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const result = await response.json();
+    if (result.profile_pic) {
+      const secureUrl = result.profile_pic.replace(/^http:/, "https:");
+      localStorage.setItem("profile_pic", secureUrl);
+      setProfilePic(secureUrl);
+    }
+  }
 
-        if (!response.ok) throw new Error("Failed to fetch profile");
-        const result = await response.json();
-        console.log(result.data);
-        
-        setProfileData(result.data);
-
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    if (!RegisterCheck) fetchProfile();
-  }, [RegisterCheck]);
+  if (!RegisterCheck) fetchProfile();
+}, [RegisterCheck]);
 
  const handleSave = async () => {
   try {
