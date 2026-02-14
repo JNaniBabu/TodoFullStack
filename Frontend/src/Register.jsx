@@ -45,9 +45,7 @@ const API= "https://web-production-b7c02.up.railway.app";
       password: passwordData.current.value,
       name: nameData.current.value,
     };
-    async function registerUser(e) {
-      e.preventDefault()
-
+    async function registerUser() {
       try {
         const response = await fetch(`${API}/register/`, {
           method: "POST",
