@@ -29,7 +29,6 @@ def Registration(request):
     errors = {field: error[0] if isinstance(error, list) else error for field, error in serializer.errors.items()}
     return Response({'message': 'Validation failed', 'errors': errors}, status=status.HTTP_400_BAD_REQUEST)
 
-
 @api_view(['POST'])
 def Login(request):
     email = request.data.get('email')
@@ -39,7 +38,7 @@ def Login(request):
 
     if user:
         refresh = RefreshToken.for_user(user)
-        profile = user.profile
+        profile, created = user.profile.__class__.objects.get_or_create(user=user)
 
         response = Response({
             'message': 'Login successful',
@@ -48,18 +47,18 @@ def Login(request):
         })
 
         response.set_cookie(
-                  key='refresh',
-                  value=str(refresh),
-                  httponly=True,
-                 secure=True,
-                 samesite='None',  
-                  path='/'
-                  )
-
+            key='refresh',
+            value=str(refresh),
+            httponly=True,
+            secure=True,
+            samesite='None',
+            path='/'
+        )
 
         return response
 
     return Response({'message': 'Invalid credentials'}, status=401)
+
 
 
 
