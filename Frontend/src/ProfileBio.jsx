@@ -81,18 +81,17 @@ function ProfileBio({ HandleBack, HandleLogout }) {
     if (fileRef.current.files[0]) {
       formData.append("profile_pic", fileRef.current.files[0]);
     }
-
     const response = await fetchWithRefresh(`${API}/update-profile/`, {
       method: "PUT",
       body: formData,
     });
-
+   
     if (!response.ok) throw new Error("Failed to update profile");
-
     const data = await response.json();
-
-    setPreview(null);
-    setProfileData(data);d
+     if (data.profile_pic) {
+    setPreview(data.profile_pic);
+   }
+    setProfileData(data);
 
   } catch (error) {
     console.error(error);
