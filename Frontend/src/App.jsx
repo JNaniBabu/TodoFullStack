@@ -184,6 +184,8 @@ function App() {
             <div
               className="profileImage"
               onClick={() => {
+                console.log("j");
+                
                 if (!RegisterCheck) setProfileNotCheck([1]);
                 return;
               }}

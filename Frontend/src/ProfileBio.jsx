@@ -29,9 +29,9 @@ function ProfileBio({ HandleBack, HandleLogout }) {
   const { RegisterCheck } = useContext(AuthenticationContext);
 
   const [ProfileData, setProfileData] = useState({
-    name: "",
-    bio: "",
-    no_of_tasks: 0,
+    name:"",
+    bio:"",
+    no_of_tasks:0,
     totalcompletion: 0,
     streak: 0,
     profile_pic: null,
