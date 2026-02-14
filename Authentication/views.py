@@ -41,12 +41,12 @@ def Login(request):
 
     if user:
         refresh = RefreshToken.for_user(user)
-        profile, created = user.Profile.__class__.objects.get_or_create(user=user)
+        profile= user.profile
 
         response = Response({
             'message': 'Login successful',
             'access': str(refresh.access_token),
-            "profile_pic": Profile.profile_pic.url if Profile.profile_pic else None,
+            "profile_pic": profile.profile_pic.url if profile.profile_pic else None,
         })
 
         response.set_cookie(
