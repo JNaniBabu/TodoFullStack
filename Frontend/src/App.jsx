@@ -91,9 +91,10 @@ function App() {
   }
 }, []);
   async function handleImageUpdation(profile_pic_path) {
-    localStorage.setItem("profile_pic", profile_pic_path);
+    const secureUrl = profile_pic_path.replace(/^http:/, "https:");
+    localStorage.setItem("profile_pic", secureUrl);
+    setProfilePic(secureUrl);
     await GetList();
-    setProfilePic(profile_pic_path);
   }
 
   async function GetList() {
