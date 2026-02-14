@@ -73,37 +73,32 @@ function ProfileBio({ HandleBack, HandleLogout }) {
   }, [RegisterCheck]);
 
  const handleSave = async () => {
-    try {
-      const formData = new FormData();
-      formData.append("name", ProfileData.name);
-      formData.append("bio", ProfileData.bio);
+  try {
+    const formData = new FormData();
+    formData.append("name", ProfileData.name);
+    formData.append("bio", ProfileData.bio);
 
-      if (fileRef.current.files[0]) {
-        formData.append("profile_pic", fileRef.current.files[0]);
-      }
-
-      const token = localStorage.getItem("access");
-
-      const response = await fetch(`${API}/update-profile/`, {
-        method: "PUT",
-        headers: {
-          Authorization: `Bearer ${token}`, 
-        },
-        body: formData,
-        credentials: "include",
-      });
-
-      if (!response.ok) throw new Error("Failed to update profile");
-
-      const data = await response.json();
-      const fullPath = data.profile_pic ? `${API}${data.profile_pic}` : null;
-
-      setPreview(fullPath);
-      setProfileData(data);
-    } catch (error) {
-      console.error(error);
+    if (fileRef.current.files[0]) {
+      formData.append("profile_pic", fileRef.current.files[0]);
     }
-  };
+
+    const response = await fetchWithRefresh(`${API}/update-profile/`, {
+      method: "PUT",
+      body: formData,
+    });
+
+    if (!response.ok) throw new Error("Failed to update profile");
+
+    const data = await response.json();
+
+    setPreview(null);
+    setProfileData(data);
+
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 
   const getFeedback = () => {
     const percent = ProfileData.no_of_tasks
