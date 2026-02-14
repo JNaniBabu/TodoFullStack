@@ -104,7 +104,8 @@ def Logout(request):
 @permission_classes([IsAuthenticated])
 def ProfileData(request):
     profile = request.user.profile
-    serializer = ProfileSerializer(profile)
+    serializer = ProfileSerializer(profile, context={'request': request})
+
 
     data = {
         'name': request.user.name,
@@ -124,10 +125,11 @@ def UpdateProfileData(request):
     profile = request.user.profile
 
     serializer = ProfileSerializer(
-        profile,
-        data=request.data,
-        partial=True
-    )
+    profile,
+    data=request.data,
+    partial=True,
+    context={'request': request}
+)
 
     if serializer.is_valid():
         serializer.save()
